@@ -19,5 +19,15 @@ const resetBtn = document.getElementById("resetBtn")
 rollBtn.addEventListener('click', function() {
     // console.log('button clicked')
     const randomNumber = Math.floor(Math.random() * 6) + 1
-    console.log(randomNumber)
+        // console.log(randomNumber)
+
+    if (player1Turn) {
+        console.log("player 1 rolled: " + randomNumber)
+    } else {
+        console.log("player 2 rolled: " + randomNumber)
+    }
+
+    player1Turn = !player1Turn
 })
+
+//finding out which players turn it is to roll the dice
