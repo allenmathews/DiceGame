@@ -13,3 +13,11 @@ const player2Scoreboard = document.getElementById("player2Scoreboard")
 const message = document.getElementById("message")
 const rollBtn = document.getElementById("rollBtn")
 const resetBtn = document.getElementById("resetBtn")
+
+/* Hooking up a click event listener to the Roll Dice Button. Log out a random number between 1 and 6. Hint: use Math.floor() and Math.random() */
+
+rollBtn.addEventListener('click', function() {
+    // console.log('button clicked')
+    const randomNumber = Math.floor(Math.random() * 6) + 1
+    console.log(randomNumber)
+})
