@@ -14,12 +14,15 @@ const message = document.getElementById("message")
 const rollBtn = document.getElementById("rollBtn")
 const resetBtn = document.getElementById("resetBtn")
 
+function showDisplayButton() {
+    rollBtn.style.display = "none"
+    resetBtn.style.display = "block"
+}
+
 /* Hooking up a click event listener to the Roll Dice Button. Log out a random number between 1 and 6. Hint: use Math.floor() and Math.random() */
 
-rollBtn.addEventListener('click', function() {
-    // console.log('button clicked')
+rollBtn.addEventListener("click", function() {
     const randomNumber = Math.floor(Math.random() * 6) + 1
-        // console.log(randomNumber)
 
     if (player1Turn) {
         player1Score += randomNumber
@@ -32,21 +35,38 @@ rollBtn.addEventListener('click', function() {
         player2Score += randomNumber
         player2Scoreboard.textContent = player2Score
         player2Dice.textContent = randomNumber
-        play er2Dice.classList.remove("active")
+        player2Dice.classList.remove("active")
         player1Dice.classList.add("active")
         message.textContent = "Player 1 Turn"
     }
     if (player1Score >= 20) {
         message.textContent = "Player 1 has won! 🥳"
-        rollBtn.style.display = "none"
-        resetBtn.style.display = "block"
+        showDisplayButton()
     } else if (player2Score >= 20) {
         message.textContent = "Player 2 has won! 🎉"
-        rollBtn.style.display = "none"
-        resetBtn.style.display = "block"
+        showDisplayButton()
     }
 
     player1Turn = !player1Turn
 })
 
+
+resetBtn.addEventListener("click", function() {
+    reset()
+})
+
+function reset() {
+    message.textContent = "Player 1 Turn"
+    player1Scoreboard.textContent = 0
+    player2Scoreboard.textContent = 0
+    player1Dice.textContent = '-'
+    player2Dice.textContent = '-'
+    player1Score = 0
+    player2Score = 0
+    player1Turn = true
+    resetBtn.style.display = "none"
+    rollBtn.style.display = "block"
+    player2Dice.classList.remove("active")
+    player1Dice.classList.add("active")
+}
 //finding out which players turn it is to roll the dice
